@@ -8,7 +8,7 @@
     android:layout_marginRight="15dp"
     android:layout_marginTop="15dp"
     app:cardCornerRadius="4dp"
-    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+    android:theme="@style/Theme.MaterialComponents.Light">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,7 +22,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="预报"
+            android:text="@string/forecastText"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp"/>
 
