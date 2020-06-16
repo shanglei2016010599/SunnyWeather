@@ -14,13 +14,12 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.sunnyweather.android.R
 import com.sunnyweather.android.logic.model.Weather
 import com.sunnyweather.android.logic.model.getSky
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.forecast.*
-import kotlinx.android.synthetic.main.forecast_item.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
@@ -28,7 +27,7 @@ import java.util.*
 
 class WeatherActivity : AppCompatActivity() {
 
-    val viewModel by lazy { ViewModelProviders.of(this)
+    val viewModel by lazy { ViewModelProvider(this)
         .get(WeatherViewModel::class.java)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +62,7 @@ class WeatherActivity : AppCompatActivity() {
             swipeRefresh.isRefreshing = false
         })
 
+        /* 下拉刷新的样式设置 */
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary)
         refreshWeather()
         swipeRefresh.setOnRefreshListener {
@@ -72,6 +72,7 @@ class WeatherActivity : AppCompatActivity() {
         navBtn.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
+
         drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerStateChanged(newState: Int) {
                 /*TODO("Not yet implemented")*/
@@ -86,6 +87,7 @@ class WeatherActivity : AppCompatActivity() {
             }
 
             override fun onDrawerClosed(drawerView: View) {
+                /* 隐藏输入法 */
                 val manager = getSystemService(Context.INPUT_METHOD_SERVICE)
                     as InputMethodManager
                 manager.hideSoftInputFromWindow(drawerView.windowToken,
@@ -125,11 +127,14 @@ class WeatherActivity : AppCompatActivity() {
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd",
                 Locale.getDefault())
             dateInfo.text = simpleDateFormat.format(skycon.date)
+            Log.d("TAG", simpleDateFormat.format(skycon.date))
             val sky = getSky(skycon.value)
             skyIcon.setImageResource(sky.icon)
             skyInfo.text = sky.info
+            Log.d("TAG", sky.info)
             val tempText = "${temperature.min.toInt()} ~ ${temperature.max.toInt()} ℃"
             temperatureInfo.text = tempText
+            Log.d("TAG", tempText)
             forecastLayout.addView(view)
         }
         // 填充life_index.xml布局中的数据
@@ -139,6 +144,5 @@ class WeatherActivity : AppCompatActivity() {
         ultravioletText.text = lifeIndex.ultraviolet[0].desc
         carWashingText.text = lifeIndex.carWashing[0].desc
         weatherLayout.visibility = View.VISIBLE
-        /* TODO("天气页面布局显示异常") */
     }
 }

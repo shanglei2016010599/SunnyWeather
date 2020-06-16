@@ -8,7 +8,7 @@
     android:layout_marginRight="15dp"
     android:layout_marginTop="15dp"
     app:cardCornerRadius="4dp"
-    android:theme="@style/Theme.MaterialComponents.Light">
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
     <LinearLayout
         android:orientation="vertical"

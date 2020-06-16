@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sunnyweather.android.MainActivity
 import com.sunnyweather.android.R
@@ -19,12 +19,13 @@ import kotlinx.android.synthetic.main.fragment_place.*
 
 class PlaceFragment : Fragment() {
 
-    val viewModel by lazy { ViewModelProviders.of(this)
+    val viewModel by lazy { ViewModelProvider(this)
         .get(PlaceViewModel::class.java) }
 
     private lateinit var adapter: PlaceAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_place, container, false)
     }
 

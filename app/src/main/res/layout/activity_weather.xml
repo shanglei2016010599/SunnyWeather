@@ -19,15 +19,15 @@
             android:visibility="invisible">
 
             <LinearLayout
-                android:id="@+id/vertical"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <include layout="@layout/now"/>
+                <include layout="@layout/now" />
 
-                <include layout="@layout/forecast"/>
+                <include layout="@layout/forecast" />
 
-                <include layout="@layout/life_index"/>
+                <include layout="@layout/life_index" />
 
             </LinearLayout>
 
